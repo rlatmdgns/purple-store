@@ -1,1 +1,0 @@
-export {LoginFrom as default} from './LoginFrom';
