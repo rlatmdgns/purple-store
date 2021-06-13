@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Header from '../Header';
 
 const Wrapper = styled.div`
-  max-width: 600px;
+  max-width: 420px;
+  min-height: 100vh;
   margin:0 auto;
   background: #fff;
 `;

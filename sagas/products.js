@@ -1,30 +1,39 @@
 import axios from 'axios';
 import { all, fork, put, call, takeLatest, throttle } from 'redux-saga/effects';
-import { LOAD_PRODUCTS_FAILURE, LOAD_PRODUCTS_REQUEST, LOAD_PRODUCTS_SUCCESS } from '../actions/products';
+import {
+  LOAD_PRODUCTS_FAILURE,
+  LOAD_PRODUCTS_REQUEST,
+  LOAD_PRODUCTS_SUCCESS,
+} from '../actions/products';
 
-function loadProductsAPI() {
-  return axios.get('/favorite');
+function loadProductsAPI(page) {
+  return axios.get(`/products?page=${page || 1}`);
 }
 
 function* loadProducts(action) {
   try {
-    const result = yield call(loadProductsAPI);
+    const response = yield call(loadProductsAPI, action.page);
+    console.log(response.data);
     yield put({
       type: LOAD_PRODUCTS_SUCCESS,
-      data: result.data,
+      data: {
+        products: response.data.results,
+        next: response.data.next,
+      },
     });
   } catch (error) {
     yield put({
       type: LOAD_PRODUCTS_FAILURE,
-      error,
+      data: error,
     });
   }
 }
+
 function* watchLoadProducts() {
-  yield takeLatest(LOAD_PRODUCTS_REQUEST, loadProducts);
+  yield throttle(3000, LOAD_PRODUCTS_REQUEST, loadProducts);
 }
 
-export default function* projectSaga() {
+export default function* productsSaga() {
   yield all([
     fork(watchLoadProducts),
   ]);

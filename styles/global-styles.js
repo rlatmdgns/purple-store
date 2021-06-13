@@ -60,6 +60,7 @@ template {
 
 a {
   background-color: transparent;
+  text-decoration: none;
 }
 
 

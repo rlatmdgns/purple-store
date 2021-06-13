@@ -17,7 +17,11 @@ const Header = () => (
       </Link>
     </Logo>
     <CartButton>
-      <img src="./images/icon-cart.svg" alt="장바구니" />
+      <Link href="/cart-items">
+        <a>
+          <img src="./images/icon-cart.svg" alt="장바구니" />
+        </a>
+      </Link>
     </CartButton>
   </HeaderWrapper>
 );
