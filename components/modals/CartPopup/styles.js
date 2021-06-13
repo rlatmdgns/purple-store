@@ -34,6 +34,7 @@ export const ProgressWrapper = styled.div`
   position: relative;
   background: #ccc;
   height: 10px;
+  margin-top: 40px;
   transition: background .3s ease-in-out;
   border-radius: 100px;
   display: flex;
@@ -51,6 +52,7 @@ export const Progress = styled.div`
 `;
 
 export const SalePoint = styled.div`
+    position: relative;
     flex: 1;
     text-align: right;
     display: block;
@@ -66,6 +68,22 @@ export const SalePoint = styled.div`
     background: ${(props) => (props.active ? '#cb9aff' : '#fff')};
     vertical-align: top;
     border: 2px solid #5912a4;
+  }
+  span{
+    position: absolute;
+    right:0;
+    top:-30px;
+    min-width: 160px;
+    padding: 4px;
+    border: 1px solid #5912a4;
+    border-radius: 100px;
+    font-size: 12px;
+    text-align: center;
+    em{
+      font-weight: 700;
+      font-style: normal;
+      color: #6415b7;
+    }
   }
 `;
 

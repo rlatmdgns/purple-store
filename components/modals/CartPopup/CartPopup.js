@@ -15,14 +15,13 @@ import {
 } from './styles';
 import PurpleButton from '../../common/PurpleButton';
 
-const isNext = true;
 const CartPopup = ({ setIsOpen }) => {
   const dispatch = useDispatch();
   const { carts } = useSelector((state) => state.carts);
-  // const cartPrice = totalPice(carts);
-  const cartPrice = 20000;
-  const maxPrice = 200000;
-  const differencePrice = maxPrice - (cartPrice > maxPrice ? maxPrice : cartPrice);
+
+  const cartPrice = totalPice(carts);
+  let goalPirce;
+
   let currentPercent = '';
   if (cartPrice <= 25000) {
     currentPercent = 25;
@@ -31,26 +30,32 @@ const CartPopup = ({ setIsOpen }) => {
   } else if (cartPrice <= 100000) {
     currentPercent = 50 + ((cartPrice / 100000) * 25);
   } else if (cartPrice <= 200000) {
-    currentPercent = 50 + (((cartPrice - 100000) / 100000) * 25);
+    currentPercent = 75 + (((cartPrice - 100000) / 100000) * 25);
   } else {
     currentPercent = 100;
   }
+
   const sales = [
     {
       value: 0,
-      text: '기본 5% ⇣',
+      text: '기본',
+      percent: '5%',
     },
     {
       value: 50000,
-      text: '5만원 10% ⇣',
+      text: '5만원',
+      percent: '10%',
     },
     {
       value: 100000,
-      text: '10만원 13% ⇣',
+      text: '10만원',
+      percent: '13%',
     },
     {
       value: 200000,
-      text: '20만원 15% ⇣',
+      text: '20만원',
+      percent: '15%',
+
     },
   ];
   useEffect(() => {
@@ -70,14 +75,18 @@ const CartPopup = ({ setIsOpen }) => {
           {sales.map((sale, index) => {
             if (sale.value <= cartPrice) {
               return (
-                <SalePoint active />
+                <SalePoint key={index} active />
               );
             }
             if (isNextSale) {
+              goalPirce = sale.value;
               isNextSale = false;
               return (
-                <SalePoint>
-                  {differencePrice}
+                <SalePoint key={index}>
+                  <span>
+                    {(goalPirce - cartPrice).toLocaleString()}원 추가시
+                    <em>{sale.percent}할인</em>
+                  </span>
                 </SalePoint>
               );
             }
@@ -87,17 +96,19 @@ const CartPopup = ({ setIsOpen }) => {
           })}
         </ProgressWrapper>
         <SaleList>
-          {sales.map((sale) => {
+          {sales.map((sale, index) => {
             if (sale.value <= cartPrice) {
               return (
-                <SaleItem active>
+                <SaleItem key={index} active>
                   {sale.text}
+                  {sale.percent}↓
                 </SaleItem>
               );
             }
             return (
-              <SaleItem>
+              <SaleItem key={index}>
                 {sale.text}
+                {sale.percent}↓
               </SaleItem>
             );
           })}

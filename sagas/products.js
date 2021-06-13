@@ -13,7 +13,6 @@ function loadProductsAPI(page) {
 function* loadProducts(action) {
   try {
     const response = yield call(loadProductsAPI, action.page);
-    console.log(response.data);
     yield put({
       type: LOAD_PRODUCTS_SUCCESS,
       data: {

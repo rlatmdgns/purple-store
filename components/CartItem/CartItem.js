@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { REMOVE_CART_REQUEST } from '../../actions/carts';
 import Checkbox from '../common/Checkbox';
 import {
   CartItemWrapper,
@@ -13,8 +15,15 @@ import {
 } from './styles';
 
 const CartItem = ({ item, checkHandler, checkItems }) => {
+  const dispatch = useDispatch();
   const price = (item.pog.price).toLocaleString();
-  const point = (item.pog.price) / 100;
+  const point = parseInt((item.pog.price) / 100);
+  const onClickRemoveCart = (id) => {
+    dispatch({
+      type: REMOVE_CART_REQUEST,
+      data: id,
+    });
+  };
   return (
     <CartItemWrapper>
       <CartItemHeader>
@@ -25,7 +34,7 @@ const CartItem = ({ item, checkHandler, checkItems }) => {
         <CartItemTitle>
           {item.pog.name}
         </CartItemTitle>
-        <CartItemDelete type="button">
+        <CartItemDelete type="button" onClick={() => onClickRemoveCart(item.id)}>
           삭제
         </CartItemDelete>
       </CartItemHeader>
@@ -43,7 +52,7 @@ const CartItem = ({ item, checkHandler, checkItems }) => {
           <Quantity>
             <button type="button">-</button>
             {/* {item.qty} */}
-            <input type="number" />
+            <input type="number" value={item.qty} readOnly />
             <button type="button">+</button>
           </Quantity>
         </div>

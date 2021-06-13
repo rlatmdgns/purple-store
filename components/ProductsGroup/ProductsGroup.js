@@ -12,6 +12,18 @@ const ProductsGroup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const { products, productsLoading, nextProducts } = useSelector((state) => state.products);
+  const { addCartDone } = useSelector((state) => state.carts);
+
+  const onClickAddCart = (id) => {
+    dispatch({
+      type: ADD_CART_REQUEST,
+      data: {
+        pog: { id },
+        qty: 1,
+      },
+    });
+  };
+
   useEffect(() => {
     const page = nextProducts ? nextProducts.charAt(nextProducts.length - 1) : null;
     function onScroll() {
@@ -29,16 +41,13 @@ const ProductsGroup = () => {
       window.removeEventListener('scroll', onScroll);
     };
   }, [productsLoading]);
-  const onClickAddCart = (id) => {
-    // dispatch({
-    //   type: ADD_CART_REQUEST,
-    //   data: {
-    //     pog: { id },
-    //     qty: 1,
-    //   },
-    // });
-    setIsOpen(true);
-  };
+
+  useEffect(() => {
+    console.log(addCartDone);
+    if (addCartDone) {
+      setIsOpen(true);
+    }
+  }, [addCartDone]);
   return (
     <>
       <ProductList>
