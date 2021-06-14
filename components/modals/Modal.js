@@ -17,11 +17,14 @@ const Modal = ({ children, visible, setIsOpen }) => {
     }
   };
 
-  const keyPress = useCallback((e) => {
-    if (e.key === 'Escape' && !visible) {
-      setIsOpen(false);
-    }
-  }, [visible]);
+  const keyPress = useCallback(
+    (e) => {
+      if (e.key === 'Escape' && !visible) {
+        setIsOpen(false);
+      }
+    },
+    [visible],
+  );
   useEffect(() => {
     if (visible) {
       document.body.style.overflow = 'hidden';
@@ -40,10 +43,7 @@ const Modal = ({ children, visible, setIsOpen }) => {
   );
 
   if (isBrowser) {
-    return ReactDOM.createPortal(
-      modalContent,
-      document.getElementById('modal-root'),
-    );
+    return ReactDOM.createPortal(modalContent, document.getElementById('modal-root'));
   }
   return null;
 };

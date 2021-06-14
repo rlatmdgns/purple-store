@@ -49,7 +49,7 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
       break;
     case REMOVE_CART_SUCCESS:
       draft.removeCartLoading = false;
-      draft.carts = draft.carts.filter((cart) => (cart.id !== action.data));
+      draft.carts = draft.carts.filter((cart) => cart.id !== action.data);
       draft.removeCartError = null;
       draft.removeCartDone = true;
       break;

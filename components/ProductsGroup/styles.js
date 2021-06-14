@@ -7,7 +7,7 @@ export const ProductList = styled.ul`
   padding: 0;
   list-style: none;
 
-  li{
+  li {
     flex: 1 1 48%;
   }
 `;

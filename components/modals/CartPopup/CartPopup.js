@@ -3,16 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { LOAD_CART_REQUEST } from '../../../actions/carts';
 import { totalPice } from '../../common/common';
-import {
-  PopupWrap,
-  ButtonArea,
-  Title,
-  ProgressWrapper,
-  Progress,
-  SalePoint,
-  SaleList,
-  SaleItem,
-} from './styles';
+import { PopupWrap, ButtonArea, Title, ProgressWrapper, Progress, SalePoint, SaleList, SaleItem } from './styles';
 import PurpleButton from '../../common/PurpleButton';
 
 const CartPopup = ({ setIsOpen }) => {
@@ -28,9 +19,9 @@ const CartPopup = ({ setIsOpen }) => {
   } else if (cartPrice <= 50000) {
     currentPercent = (cartPrice / 100000) * 100;
   } else if (cartPrice <= 100000) {
-    currentPercent = 50 + ((cartPrice / 100000) * 25);
+    currentPercent = 50 + (cartPrice / 100000) * 25;
   } else if (cartPrice <= 200000) {
-    currentPercent = 75 + (((cartPrice - 100000) / 100000) * 25);
+    currentPercent = 75 + ((cartPrice - 100000) / 100000) * 25;
   } else {
     currentPercent = 100;
   }
@@ -55,7 +46,6 @@ const CartPopup = ({ setIsOpen }) => {
       value: 200000,
       text: '20만원',
       percent: '15%',
-
     },
   ];
   useEffect(() => {
@@ -66,17 +56,13 @@ const CartPopup = ({ setIsOpen }) => {
   let isNextSale = true;
   return (
     <PopupWrap>
-      <Title>
-        장바구니에 담겼습니다.
-      </Title>
+      <Title>장바구니에 담겼습니다.</Title>
       <div>
         <ProgressWrapper>
           <Progress currentPercent={currentPercent} />
           {sales.map((sale, index) => {
             if (sale.value <= cartPrice) {
-              return (
-                <SalePoint key={index} active />
-              );
+              return <SalePoint key={index} active />;
             }
             if (isNextSale) {
               goalPirce = sale.value;
@@ -90,9 +76,7 @@ const CartPopup = ({ setIsOpen }) => {
                 </SalePoint>
               );
             }
-            return (
-              <SalePoint />
-            );
+            return <SalePoint />;
           })}
         </ProgressWrapper>
         <SaleList>
@@ -115,13 +99,14 @@ const CartPopup = ({ setIsOpen }) => {
         </SaleList>
       </div>
       <ButtonArea>
-        <PurpleButton type="button" onClick={() => setIsOpen(false)} white>계속 담기</PurpleButton>
+        <PurpleButton type="button" onClick={() => setIsOpen(false)} white>
+          계속 담기
+        </PurpleButton>
         <PurpleButton>
           <Link href="/cart-items">
             <a>장바구니 확인</a>
           </Link>
         </PurpleButton>
-
       </ButtonArea>
     </PopupWrap>
   );

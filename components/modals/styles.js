@@ -12,5 +12,5 @@ export const ModalWrapper = styled.div`
   display: ${(props) => (props.visible ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
-  background: rgba(0,0,0, 0.3);
+  background: rgba(0, 0, 0, 0.3);
 `;

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const ProductWrapper = styled.div`
-padding:10px 15px;
+  padding: 10px 15px;
 `;
 
 export const ProductTitle = styled.p`
   overflow: hidden;
   display: -webkit-box;
-  margin:5px 0 0 0;
+  margin: 5px 0 0 0;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -34,7 +34,7 @@ export const ProductImgWrapper = styled.div`
   border-radius: 6px;
   background-color: #f2f2f2;
   text-align: center;
-  img{
+  img {
     width: 132px;
     height: 140px;
     object-fit: cover;
@@ -46,17 +46,17 @@ export const ProductCart = styled.button`
   bottom: 10px;
   display: block;
   padding: 5px 6px;
-  border:1px solid #555;
+  border: 1px solid #555;
   border-radius: 50%;
   text-align: center;
-  background:#fff;
-  &:before{
+  background: #fff;
+  &:before {
     display: inline-block;
     margin: 2px 0 0 -2px;
-    content:"";
+    content: '';
     width: 20px;
     height: 17px;
-    background:url('./images/icon-cart.svg') no-repeat;
-    background-size:cover;
+    background: url('./images/icon-cart.svg') no-repeat;
+    background-size: cover;
   }
 `;

@@ -6,9 +6,7 @@ import Loader from '../components/common/Loader';
 import { LOAD_CART_REQUEST } from '../actions/carts';
 import CartGroup from '../components/CartGroup';
 
-const Cart = () => (
-  <CartGroup />
-);
+const Cart = () => <CartGroup />;
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
   context.store.dispatch({

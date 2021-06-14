@@ -14,7 +14,11 @@ const App = ({ Component, pageProps }) => (
       <meta content="퍼플스토어" property="og:title" />
       <meta content="동물친구와의 평화로운 동거생활, 퍼플스토어와 함께!" name="description" />
       <meta content="동물친구와의 평화로운 동거생활, 퍼플스토어와 함께!" property="og:description" />
-      <link href="https://s3-purplestore.s3.ap-northeast-2.amazonaws.com/assets/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+      <link
+        href="https://s3-purplestore.s3.ap-northeast-2.amazonaws.com/assets/favicon.ico"
+        rel="shortcut icon"
+        type="image/x-icon"
+      />
     </Head>
     <GlobalStyle />
     <AppLayout>

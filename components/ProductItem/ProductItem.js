@@ -8,7 +8,7 @@ const ProductItem = ({ product, onClickAddCart }) => (
       <ProductCart type="button" onClick={() => onClickAddCart(product.id)} />
     </ProductImgWrapper>
     <ProductTitle>{product.name}</ProductTitle>
-    <ProductPrice>{(product.price).toLocaleString()}원</ProductPrice>
+    <ProductPrice>{product.price.toLocaleString()}원</ProductPrice>
   </ProductWrapper>
 );
 

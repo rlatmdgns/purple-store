@@ -5,7 +5,7 @@ import Header from '../Header';
 const Wrapper = styled.div`
   max-width: 420px;
   min-height: 100vh;
-  margin:0 auto;
+  margin: 0 auto;
   background: #fff;
 `;
 const AppLayout = ({ children }) => (

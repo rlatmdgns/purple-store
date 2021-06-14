@@ -16,8 +16,8 @@ import {
 
 const CartItem = ({ item, checkHandler, checkItems }) => {
   const dispatch = useDispatch();
-  const price = (item.pog.price).toLocaleString();
-  const point = parseInt((item.pog.price) / 100);
+  const price = item.pog.price.toLocaleString();
+  const point = parseInt(item.pog.price / 100);
   const onClickRemoveCart = (id) => {
     dispatch({
       type: REMOVE_CART_REQUEST,
@@ -27,13 +27,8 @@ const CartItem = ({ item, checkHandler, checkItems }) => {
   return (
     <CartItemWrapper>
       <CartItemHeader>
-        <Checkbox
-          onChange={(e) => checkHandler(e.target.checked, item)}
-          checked={checkItems.indexOf(item) >= 0}
-        />
-        <CartItemTitle>
-          {item.pog.name}
-        </CartItemTitle>
+        <Checkbox onChange={(e) => checkHandler(e.target.checked, item)} checked={checkItems.indexOf(item) >= 0} />
+        <CartItemTitle>{item.pog.name}</CartItemTitle>
         <CartItemDelete type="button" onClick={() => onClickRemoveCart(item.id)}>
           삭제
         </CartItemDelete>
@@ -43,12 +38,8 @@ const CartItem = ({ item, checkHandler, checkItems }) => {
           <img src={item.pog.image} />
         </CartItemThumbnail>
         <div>
-          <Price>
-            {price}원
-          </Price>
-          <Point>
-            최대 {point}원 적립예정
-          </Point>
+          <Price>{price}원</Price>
+          <Point>최대 {point}원 적립예정</Point>
           <Quantity>
             <button type="button">-</button>
             {/* {item.qty} */}

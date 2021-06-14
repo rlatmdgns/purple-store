@@ -13,7 +13,6 @@ const ProductsGroup = () => {
   const dispatch = useDispatch();
   const { products, productsLoading, nextProducts } = useSelector((state) => state.products);
   const { addCartDone } = useSelector((state) => state.carts);
-
   const onClickAddCart = (id) => {
     dispatch({
       type: ADD_CART_REQUEST,

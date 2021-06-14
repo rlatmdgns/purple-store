@@ -9,7 +9,7 @@ export const HeaderWrapper = styled.header`
 
 export const Logo = styled.h1`
   padding: 0;
-  margin:0 0 0 10px;
+  margin: 0 0 0 10px;
   font-size: 20px;
 `;
 
@@ -19,17 +19,17 @@ export const MenuButton = styled.button`
   i {
     display: block;
     background: #333;
-    height:3px;
-    border-radius:10px;
+    height: 3px;
+    border-radius: 10px;
   }
   i + i {
-    margin-top:3px;
+    margin-top: 3px;
   }
-  `;
+`;
 
 export const CartButton = styled.button`
-  margin-left:auto;
-  img{
-    width:24px;
+  margin-left: auto;
+  img {
+    width: 24px;
   }
 `;

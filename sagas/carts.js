@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { all, fork, put, call, takeLatest, throttle } from 'redux-saga/effects';
+import { all, fork, put, call, takeLatest, throttle, takeEvery } from 'redux-saga/effects';
 import {
   REMOVE_CART_REQUEST,
   REMOVE_CART_SUCCESS,
@@ -84,7 +84,7 @@ function* loadCart() {
 }
 
 function* watchRemoveCart() {
-  yield takeLatest(REMOVE_CART_REQUEST, removeCart);
+  yield takeEvery(REMOVE_CART_REQUEST, removeCart);
 }
 
 function* watchAddCart() {
@@ -96,9 +96,5 @@ function* watchLoadCart() {
 }
 
 export default function* cartsSaga() {
-  yield all([
-    fork(watchRemoveCart),
-    fork(watchAddCart),
-    fork(watchLoadCart),
-  ]);
+  yield all([fork(watchRemoveCart), fork(watchAddCart), fork(watchLoadCart)]);
 }

@@ -9,11 +9,7 @@ import ProudctsGroup from '../components/ProductsGroup';
 
 const Home = () => {
   const { productsLoading } = useSelector((state) => state.products);
-  return (
-    <div>
-      {productsLoading ? <Loader /> : <ProudctsGroup />}
-    </div>
-  );
+  return <div>{productsLoading ? <Loader /> : <ProudctsGroup />}</div>;
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {

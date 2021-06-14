@@ -1,9 +1,5 @@
 import produce from 'immer';
-import {
-  LOAD_PRODUCTS_FAILURE,
-  LOAD_PRODUCTS_SUCCESS,
-  LOAD_PRODUCTS_REQUEST,
-} from '../actions/products';
+import { LOAD_PRODUCTS_FAILURE, LOAD_PRODUCTS_SUCCESS, LOAD_PRODUCTS_REQUEST } from '../actions/products';
 
 export const initialState = {
   productsLoading: false,
