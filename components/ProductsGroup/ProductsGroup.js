@@ -42,7 +42,6 @@ const ProductsGroup = () => {
   }, [productsLoading]);
 
   useEffect(() => {
-    console.log(addCartDone);
     if (addCartDone) {
       setIsOpen(true);
     }

@@ -38,7 +38,6 @@ const CartGroup = () => {
     if (checked) {
       const ids = [];
       carts.forEach((item) => ids.push(item));
-      console.log(ids);
       setCheckItems(ids);
     } else {
       setCheckItems([]);

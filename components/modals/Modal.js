@@ -28,9 +28,10 @@ const Modal = ({ children, visible, setIsOpen }) => {
   useEffect(() => {
     if (visible) {
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
     }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, [visible]);
   useEffect(() => {
     document.addEventListener('keydown', keyPress);

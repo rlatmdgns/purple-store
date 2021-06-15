@@ -62,13 +62,13 @@ const CartPopup = ({ setIsOpen }) => {
           <Progress currentPercent={currentPercent} />
           {sales.map((sale, index) => {
             if (sale.value <= cartPrice) {
-              return <SalePoint key={index} active />;
+              return <SalePoint key={sale.value} active />;
             }
             if (isNextSale) {
               goalPirce = sale.value;
               isNextSale = false;
               return (
-                <SalePoint key={index}>
+                <SalePoint key={sale.value}>
                   <span>
                     {(goalPirce - cartPrice).toLocaleString()}원 추가시
                     <em>{sale.percent}할인</em>
@@ -80,17 +80,17 @@ const CartPopup = ({ setIsOpen }) => {
           })}
         </ProgressWrapper>
         <SaleList>
-          {sales.map((sale, index) => {
+          {sales.map((sale) => {
             if (sale.value <= cartPrice) {
               return (
-                <SaleItem key={index} active>
+                <SaleItem key={sale.value} active>
                   {sale.text}
                   {sale.percent}↓
                 </SaleItem>
               );
             }
             return (
-              <SaleItem key={index}>
+              <SaleItem key={sale.value}>
                 {sale.text}
                 {sale.percent}↓
               </SaleItem>

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { REMOVE_CART_REQUEST } from '../../actions/carts';
+import { CHANGE_QTY_REQUEST, DECREASE_QTY_REQUEST, INCREASE_QTY_REQUEST, REMOVE_CART_REQUEST } from '../../actions/carts';
 import Checkbox from '../common/Checkbox';
 import {
   CartItemWrapper,
@@ -15,6 +15,7 @@ import {
 } from './styles';
 
 const CartItem = ({ item, checkHandler, checkItems }) => {
+  const [qty, setQty] = useState(item.qty);
   const dispatch = useDispatch();
   const price = item.pog.price.toLocaleString();
   const point = parseInt(item.pog.price / 100);
@@ -23,6 +24,42 @@ const CartItem = ({ item, checkHandler, checkItems }) => {
       type: REMOVE_CART_REQUEST,
       data: id,
     });
+  };
+  const onClickIncreaseQty = (id, qty) => {
+    if (qty === 100) return;
+    dispatch({
+      type: INCREASE_QTY_REQUEST,
+      data: {
+        id,
+        qty: qty += 1,
+      },
+    });
+    setQty(qty + 1);
+  };
+  const onClickDecreaseQty = (id, qty) => {
+    if (qty === 1) return;
+    dispatch({
+      type: DECREASE_QTY_REQUEST,
+      data: {
+        id,
+        qty: qty -= 1,
+      },
+    });
+    setQty(qty - 1);
+  };
+  const onChangeQty = (e, id) => {
+    const qty = e.target.value;
+    dispatch({
+      type: CHANGE_QTY_REQUEST,
+      data: {
+        id,
+        qty,
+      },
+    });
+    setQty(qty);
+    if (e.target.value > 100) {
+      setQty(100);
+    }
   };
   return (
     <CartItemWrapper>
@@ -41,10 +78,9 @@ const CartItem = ({ item, checkHandler, checkItems }) => {
           <Price>{price}원</Price>
           <Point>최대 {point}원 적립예정</Point>
           <Quantity>
-            <button type="button">-</button>
-            {/* {item.qty} */}
-            <input type="number" value={item.qty} readOnly />
-            <button type="button">+</button>
+            <button type="button" onClick={() => onClickDecreaseQty(item.id, item.qty)}>-</button>
+            <input type="number" value={qty} onChange={(e) => onChangeQty(e, item.id)} />
+            <button type="button" onClick={() => onClickIncreaseQty(item.id, item.qty)}>+</button>
           </Quantity>
         </div>
       </CartItemContent>
